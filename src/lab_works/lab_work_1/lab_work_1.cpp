@@ -7,9 +7,6 @@ namespace M3D_ISICG
 {
 	const std::string LabWork1::_shaderFolder = "src/lab_works/lab_work_1/shaders/";
 
-	// Id de l'objet 'Program'
-	GLuint _program = GL_INVALID_INDEX;
-
 	LabWork1::~LabWork1() { 
 		glDeleteProgram( _program );
 	}
@@ -67,9 +64,16 @@ namespace M3D_ISICG
 			return false;
 		}
 
+		_points.push_back( Vec2f( -0.5f, 0.5f ) );
+		_points.push_back(Vec2f( 0.5f, 0.5f ) );
+		_points.push_back( Vec2f( 0.5f, -0.5f ) );
+
+		glCreateBuffers( 1, &_vbo );
+		//glNamedBufferData( _vbo, )
+
+		//Suppression des shaders
 		glDeleteShader( vertexShader );
 		glDeleteShader( fragmentShader );
-
 		std::cout << "Done!" << std::endl;
 		return true;
 	}
