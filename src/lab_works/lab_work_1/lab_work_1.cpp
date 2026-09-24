@@ -8,10 +8,10 @@ namespace M3D_ISICG
 	const std::string LabWork1::_shaderFolder = "src/lab_works/lab_work_1/shaders/";
 
 	LabWork1::~LabWork1() { 
-		glDeleteProgram( _program );
 		glDeleteBuffers( 1, &_vbo );
 		glDisableVertexArrayAttrib( _vao, 0 );
 		glDeleteVertexArrays( 1, &_vao );
+		glDeleteProgram( _program );
 	}
 
 	bool LabWork1::init()
