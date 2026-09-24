@@ -27,11 +27,11 @@ namespace M3D_ISICG
 
 		//Création des points
 		_points.push_back( Vec2f( -0.5f, 0.5f ) );
-		_points.push_back( Vec2f( 0.5f, -0.5f ) );
 		_points.push_back( Vec2f( 0.5f, 0.5f ) );
+		_points.push_back( Vec2f( 0.5f, -0.5f ) );
 		_points.push_back( Vec2f( -0.5f, -0.5f ) );
 
-		_indices = { 0, 1, 2, 1, 2, 3 };
+		_indices = { 0, 1, 2, 0, 2, 3 };
 
 		_colors.push_back( Vec3f( 1.f, 0.f, 0.f ) );
 		_colors.push_back( Vec3f( 0.f, 1.f, 0.f ) );
@@ -123,6 +123,8 @@ namespace M3D_ISICG
 		// Suppression des shaders
 		glDeleteShader( vertexShader );
 		glDeleteShader( fragmentShader );
+		glUseProgram( _program );
+
 		std::cout << "Done!" << std::endl;
 		return true;
 	}
@@ -132,7 +134,6 @@ namespace M3D_ISICG
 	void LabWork2::render()
 	{
 		glClear( GL_COLOR_BUFFER_BIT );
-		glUseProgram( _program );
 		glBindVertexArray( _vao );
 		glDrawElements( GL_TRIANGLES, _indices.size(), GL_UNSIGNED_INT, 0 );
 		glBindVertexArray( 0 );

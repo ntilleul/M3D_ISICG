@@ -87,6 +87,7 @@ namespace M3D_ISICG
 		//Suppression des shaders
 		glDeleteShader( vertexShader );
 		glDeleteShader( fragmentShader );
+		glUseProgram( _program );
 		std::cout << "Done!" << std::endl;
 		return true;
 	}
@@ -95,7 +96,6 @@ namespace M3D_ISICG
 
 	void LabWork1::render() {
 		glClear( GL_COLOR_BUFFER_BIT );
-		glUseProgram( _program );
 		glBindVertexArray( _vao );
 		glDrawArrays( GL_TRIANGLES, 0, _points.size() );
 		glBindVertexArray( 0 );
