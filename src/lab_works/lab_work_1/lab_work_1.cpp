@@ -9,6 +9,9 @@ namespace M3D_ISICG
 
 	LabWork1::~LabWork1() { 
 		glDeleteProgram( _program );
+		glDeleteBuffers( 1, &_vbo );
+		glDisableVertexArrayAttrib( _vao, 0 );
+		glDeleteVertexArrays( 1, &_vao );
 	}
 
 	bool LabWork1::init()
@@ -68,9 +71,19 @@ namespace M3D_ISICG
 		_points.push_back(Vec2f( 0.5f, 0.5f ) );
 		_points.push_back( Vec2f( 0.5f, -0.5f ) );
 
+		//Creation du VBO
 		glCreateBuffers( 1, &_vbo );
-		//glNamedBufferData( _vbo, )
+		glNamedBufferData( _vbo, _points.size() * sizeof( Vec2f ), _points.data(), GL_STATIC_DRAW );
 
+		//Creation du VAO
+		glCreateVertexArrays( 1, &_vao );
+		glEnableVertexArrayAttrib( _vao, 0 );
+		glVertexArrayAttribFormat( _vao, 0, 2, GL_FLOAT, GL_FALSE, 0 );
+
+		//Liaison du VBO au VAO
+		glVertexArrayVertexBuffer( _vao, 0, _vbo, 0, sizeof( Vec2f ) );
+		glVertexArrayAttribBinding( _vao, 0, 0 );
+		
 		//Suppression des shaders
 		glDeleteShader( vertexShader );
 		glDeleteShader( fragmentShader );
@@ -80,7 +93,13 @@ namespace M3D_ISICG
 
 	void LabWork1::animate( const float p_deltaTime ) {}
 
-	void LabWork1::render() {}
+	void LabWork1::render() {
+		glClear( GL_COLOR_BUFFER_BIT );
+		glUseProgram( _program );
+		glBindVertexArray( _vao );
+		glDrawArrays( GL_TRIANGLES, 0, _points.size() );
+		glBindVertexArray( 0 );
+	}
 
 	void LabWork1::handleEvents( const SDL_Event & p_event )
 	{}

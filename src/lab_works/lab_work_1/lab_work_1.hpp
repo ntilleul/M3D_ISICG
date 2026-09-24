@@ -23,12 +23,13 @@ namespace M3D_ISICG
 
 	  private:
 		// ================ Scene data.
-		// ================
 		std::vector<Vec2f> _points;
-		// ================ GL data.
 		// ================
+		// ================ GL data.
 		GLuint _program = GL_INVALID_INDEX;
-		GLuint _vbo = GL_INVALID_INDEX;
+		GLuint _vbo		= GL_INVALID_INDEX;
+		GLuint _vao		= GL_INVALID_INDEX;
+		// ================
 		// ================ Settings.
 		Vec4f _bgColor = Vec4f( 0.8f, 0.8f, 0.8f, 1.f ); // Background color
 		// ================
