@@ -26,6 +26,7 @@ namespace M3D_ISICG
 		std::vector<Vec2f> _points;
 		std::vector<unsigned int> _indices;
 		std::vector<Vec3f> _colors;
+		float _time;
 		// ================
 		// ================ GL data.
 		GLuint _program = GL_INVALID_INDEX;

@@ -121,9 +121,7 @@ namespace M3D_ISICG
 		}
 
 		//Récupération de l'emplacement de la variable uniforme uTranslationX dans le shader
-		//et initialisation de sa valeur à 0.2f (décalage vers la droite)
 		uTranslationX = glGetUniformLocation( _program, "uTranslationX" );
-		glProgramUniform1f( _program, uTranslationX, 0.2f);
 
 		// Suppression des shaders
 		glDeleteShader( vertexShader );
@@ -134,7 +132,12 @@ namespace M3D_ISICG
 		return true;
 	}
 
-	void LabWork2::animate( const float p_deltaTime ) {}
+	void LabWork2::animate( const float p_deltaTime ) 
+	{ 
+		float movement = glm::sin( _time );
+		glProgramUniform1f( _program, uTranslationX, movement );
+		_time += p_deltaTime;
+	}
 
 	void LabWork2::render()
 	{
