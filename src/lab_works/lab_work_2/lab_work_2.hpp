@@ -21,6 +21,8 @@ namespace M3D_ISICG
 		void handleEvents( const SDL_Event & p_event ) override;
 		void displayUI() override;
 
+		void triangleDisc( const Vec2f & center, const int N_triangle, const float radius );
+
 	  private:
 		// ================ Scene data.
 		std::vector<Vec2f>		  _points;

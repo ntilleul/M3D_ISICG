@@ -1,5 +1,8 @@
-﻿  lab_work_2.cpp
-C:\Users\tilleul1\Desktop\M3D_ISICG-main\M3D_ISICG-main\src\lab_works\lab_work_2\lab_work_2.cpp(148,46): warning C4267: 'argument' : conversion de 'size_t' en 'GLsizei', perte possible de données
+﻿  lab_work_manager.cpp
+  lab_work_2.cpp
+C:\Users\tilleul1\Desktop\M3D_ISICG-main\M3D_ISICG-main\src\lab_works\lab_work_2\lab_work_2.cpp(150,46): warning C4267: 'argument' : conversion de 'size_t' en 'GLsizei', perte possible de données
+C:\Users\tilleul1\Desktop\M3D_ISICG-main\M3D_ISICG-main\src\lab_works\lab_work_2\lab_work_2.cpp(183,16): warning C4244: 'initialisation' : conversion de 'double' en 'float', perte possible de données
+  Génération de code en cours...
   M3D_ISICG.vcxproj -> C:\Users\tilleul1\Desktop\M3D_ISICG-main\M3D_ISICG-main\x64\Debug\M3D_ISICG.exe
   0 fichier(s) copiÚ(s)
   0 fichier(s) copiÚ(s)

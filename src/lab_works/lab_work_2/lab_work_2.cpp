@@ -2,6 +2,7 @@
 #include "lab_work_2.hpp"
 #include "utils/read_file.hpp"
 #include "glm/gtc/type_ptr.hpp"
+#include "utils/random.hpp"
 #include <iostream>
 
 namespace M3D_ISICG
@@ -26,18 +27,19 @@ namespace M3D_ISICG
 
 		_program = glCreateProgram();
 
-		//Création des points
-		_points.push_back( Vec2f( -0.5f, 0.5f ) );
-		_points.push_back( Vec2f( 0.5f, 0.5f ) );
-		_points.push_back( Vec2f( 0.5f, -0.5f ) );
-		_points.push_back( Vec2f( -0.5f, -0.5f ) );
+		////Création des points
+		//_points.push_back( Vec2f( -0.5f, 0.5f ) );
+		//_points.push_back( Vec2f( 0.5f, 0.5f ) );
+		//_points.push_back( Vec2f( 0.5f, -0.5f ) );
+		//_points.push_back( Vec2f( -0.5f, -0.5f ) );
 
-		_indices = { 0, 1, 2, 0, 2, 3 };
+		//_indices = { 0, 1, 2, 0, 2, 3 };
 
-		_colors.push_back( Vec3f( 1.f, 0.f, 0.f ) );
-		_colors.push_back( Vec3f( 0.f, 1.f, 0.f ) );
-		_colors.push_back( Vec3f( 0.f, 0.f, 1.f ) );
-		_colors.push_back( Vec3f( 1.f, 0.f, 1.f ) );
+		//_colors.push_back( Vec3f( 1.f, 0.f, 0.f ) );
+		//_colors.push_back( Vec3f( 0.f, 1.f, 0.f ) );
+		//_colors.push_back( Vec3f( 0.f, 0.f, 1.f ) );
+		//_colors.push_back( Vec3f( 1.f, 0.f, 1.f ) );
+		triangleDisc( Vec2f( 0.f, 0.f ), 20, 0.5f );
 
 		//Creation du VBO
 		glCreateBuffers( 1, &_vbo );
@@ -166,6 +168,28 @@ namespace M3D_ISICG
 		}
 		if ( changeBG ) {
 			glClearColor( _bgColor.x, _bgColor.y, _bgColor.z, _bgColor.w );
+		}
+	}
+
+	void LabWork2::triangleDisc( const Vec2f & center, const int N_triangle, const float radius )
+	{ 
+		_points.clear();
+		_colors.clear();
+		_indices.clear();
+
+		_points.push_back( center );
+		for ( int i = 0; i < N_triangle; i++ )
+		{
+			float angle = ( 2 * M_PI * i ) / N_triangle;
+			Vec2f point = center + Vec2f( radius * cos( angle ), radius * sin( angle ) );
+			_points.push_back( point );
+			_colors.push_back( getRandomVec3f() );
+		}
+		for ( int i = 1; i <= N_triangle; i++ )
+		{
+			_indices.push_back( 0 );
+			_indices.push_back( i );
+			_indices.push_back( ( i % N_triangle ) + 1 );
 		}
 	}
 
