@@ -120,6 +120,9 @@ namespace M3D_ISICG
 			return false;
 		}
 
+		uTranslationX = glGetUniformLocation( _program, "uTranslationX" );
+		glProgramUniform1f( _program, uTranslationX, 0.2f);
+
 		// Suppression des shaders
 		glDeleteShader( vertexShader );
 		glDeleteShader( fragmentShader );

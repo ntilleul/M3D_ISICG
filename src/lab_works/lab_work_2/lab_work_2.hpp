@@ -33,6 +33,7 @@ namespace M3D_ISICG
 		GLuint _vao		= GL_INVALID_INDEX;
 		GLuint _elementBuffer = GL_INVALID_INDEX;
 		GLuint _vboColor	  = GL_INVALID_INDEX;
+		GLint  uTranslationX  = GL_INVALID_INDEX;
 		// ================
 		// ================ Settings.
 		Vec4f _bgColor = Vec4f( 0.8f, 0.8f, 0.8f, 1.f ); // Background color
