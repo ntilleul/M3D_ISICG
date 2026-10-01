@@ -120,6 +120,8 @@ namespace M3D_ISICG
 			return false;
 		}
 
+		//Récupération de l'emplacement de la variable uniforme uTranslationX dans le shader
+		//et initialisation de sa valeur à 0.2f (décalage vers la droite)
 		uTranslationX = glGetUniformLocation( _program, "uTranslationX" );
 		glProgramUniform1f( _program, uTranslationX, 0.2f);
 
