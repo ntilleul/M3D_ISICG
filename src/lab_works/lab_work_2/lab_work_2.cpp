@@ -1,6 +1,7 @@
 #include "imgui.h"
 #include "lab_work_2.hpp"
 #include "utils/read_file.hpp"
+#include "glm/gtc/type_ptr.hpp"
 #include <iostream>
 
 namespace M3D_ISICG
@@ -120,8 +121,9 @@ namespace M3D_ISICG
 			return false;
 		}
 
-		//Récupération de l'emplacement de la variable uniforme uTranslationX dans le shader
-		uTranslationX = glGetUniformLocation( _program, "uTranslationX" );
+		//Récupération des emplacements des variables uniformes
+		_translationX = glGetUniformLocation( _program, "uTranslationX" );
+		_light		  = glGetUniformLocation( _program, "uLight" );
 
 		// Suppression des shaders
 		glDeleteShader( vertexShader );
@@ -135,7 +137,7 @@ namespace M3D_ISICG
 	void LabWork2::animate( const float p_deltaTime ) 
 	{ 
 		float movement = glm::sin( _time );
-		glProgramUniform1f( _program, uTranslationX, movement );
+		glProgramUniform1f( _program, _translationX, movement );
 		_time += p_deltaTime;
 	}
 
@@ -151,9 +153,20 @@ namespace M3D_ISICG
 
 	void LabWork2::displayUI()
 	{
+		
+
 		ImGui::Begin( "Settings lab work 2" );
-		ImGui::Text( "No setting available!" );
+		bool changeLight = ImGui::SliderFloat( "Light", &_lighting, 0.f, 1.f );
+		bool changeBG = ImGui::ColorEdit3( "BG color", glm::value_ptr(_bgColor) );
 		ImGui::End();
+
+		if ( changeLight ) {
+			float newLight = glm::clamp( _lighting, 0.f, 1.f );
+			glProgramUniform1f( _program, _light, newLight );
+		}
+		if ( changeBG ) {
+			glClearColor( _bgColor.x, _bgColor.y, _bgColor.z, _bgColor.w );
+		}
 	}
 
 } // namespace M3D_ISICG
